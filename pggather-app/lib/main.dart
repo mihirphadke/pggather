@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pggather_app/provider/auth_provider.dart';
+import 'package:pggather_app/screen/splash_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:pggather_app/service/account_service.dart';
 
 void main() {
-  runApp(MyApp());
+  final accountService = AccountService();
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider.value(
+        value: AuthProvider(accountService),
+      ),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MainFeed(),
+      home: SplashScreen(),
     );
   }
 }
@@ -52,7 +65,8 @@ class MainFeed extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'Filter bar',
-                  style: TextStyle(color: Colors.white), // White text for filter bar
+                  style: TextStyle(
+                      color: Colors.white), // White text for filter bar
                 ),
                 // TODO: Add more filters here
               ],
@@ -68,7 +82,8 @@ class MainFeed extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(Icons.account_circle), // Placeholder for org logo
+                        leading: Icon(
+                            Icons.account_circle), // Placeholder for org logo
                         title: Text('org_name'),
                         subtitle: Text('short description'),
                       ),

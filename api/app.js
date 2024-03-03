@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 // Middlewares
 app.use(express.json());
@@ -8,7 +8,7 @@ app.use(express.json());
 exports.tokenSecret = "$thisisatokensecret7589356677532199975elrm";
 const cors = require("cors");
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3002", "http://localhost:41570"],
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
