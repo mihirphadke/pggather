@@ -2,13 +2,14 @@ const UserModel = require("../models/userModel");
 
 
 const addUser = async (req, res) => {
-  const { last_name, first_name, user_password, email } = req.body;
+  const { last_name, first_name, user_password, email , birth_at} = req.body;
 
   const result = await UserModel.addUser({
     last_name,
     first_name,
     user_password,
     email,
+    birth_at,
   });
 
   if (result.error) {

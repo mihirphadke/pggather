@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pggather_app/main.dart';
+import 'package:pggather_app/screen/signin_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:pggather_app/provider/auth_provider.dart';
 
@@ -60,6 +61,14 @@ class LoginScreen extends StatelessWidget {
               onPressed: () => _login(context),
               child: Text('Login'),
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
+                  );
+                },
+                child: Text("create account"))
           ],
         ),
       ),

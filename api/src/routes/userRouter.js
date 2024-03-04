@@ -12,6 +12,7 @@ router.post(
     body("last_name").isString().isLength({ max: 16 }),
     body("first_name").isString().isLength({ max: 16 }),
     body("user_password").isString().isLength({ min: 6, max: 12 }),
+    body("birth_at").isInt(),
     body("email").isEmail(),
   ],
   validationErrorHandler,

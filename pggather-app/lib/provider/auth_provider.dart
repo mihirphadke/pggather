@@ -23,11 +23,18 @@ class AuthProvider with ChangeNotifier {
     return _token;
   }
 
-  Future<void> signUp(String last_name, String first_name, String email,
-      int birth_at) async {
-    // Check if userId is unique
-    // API call for sign up
+  Future<String> signUp(String last_name, String first_name, String email,
+      int birth_at, String user_password) async {
+    Response res = await _accountService.signup(last_name, first_name, email, birth_at, user_password);
+    if (res.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(res.body);
+      _token = data["token"];
+      await _storage.write(key: "token", value: _token);
+      return data["token"];
+    }
+    return "";
   }
+  
 
   Future<String> login(String username, String password) async {
     // API call for login
